@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import './stat_chart.dart';
+import 'backend.dart';
 
 void main() {
+  getStatistics().then((result) {
+    print('got result size ' + result.length.toString());
+  });
   runApp(MaterialApp(home: HomePage()));
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
