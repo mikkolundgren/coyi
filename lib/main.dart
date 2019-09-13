@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import './stat_chart.dart';
+import './live_feed.dart';
 import 'backend.dart';
 
 void main() {
+  /*
   getStatistics().then((result) {
     print('got result size ' + result.length.toString());
   });
+  */
   runApp(MaterialApp(home: HomePage()));
 }
 
@@ -51,7 +54,9 @@ class HomePage extends StatelessWidget {
               label: Text('Live score'),
               icon: Icon(Icons.access_alarm),
               backgroundColor: Colors.pink,
-              onPressed: () {},
+              onPressed: () {
+                _navigate(context, action: 'live');
+              },
             ),
           )
         ],
@@ -61,7 +66,11 @@ class HomePage extends StatelessWidget {
 
   _navigate(BuildContext context, {String action}) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return WHStatsChart.withSampleDate();
+      if (action == 'live') {
+        return LiveFeed();
+      } else {
+        return WHStatsChart.withSampleDate();
+      }
     }));
   }
 }
