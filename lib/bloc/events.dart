@@ -1,0 +1,1 @@
+enum LiveFeedEvent { init, update }

@@ -1,5 +1,8 @@
 import 'package:coyi/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/events.dart';
+import 'bloc/live_feed_bloc.dart';
 
 class LiveFeed extends StatefulWidget {
   LiveFeed({Key key}) : super(key: key);
@@ -10,6 +13,13 @@ class LiveFeed extends StatefulWidget {
 class _LiveFeedState extends State<LiveFeed> {
   var _homeTeam = '48';
   var _awayTeam = '48';
+
+  final bloc = LiveFeedBloc();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +129,15 @@ class _LiveFeedState extends State<LiveFeed> {
           ],
         )
       ],
+    );
+  }
+
+  Widget _scores() {
+    return BlocListener<LiveFeedBloc, int>(
+      bloc: bloc,
+      listener: (context, state) {
+        
+      }, 
     );
   }
 }
